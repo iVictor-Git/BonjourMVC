@@ -40,9 +40,8 @@ namespace BonjourMVC.Controllers
             {
                 if (Request.Cookies["counter"] == null)
                 {
-
-                    Response.Cookies.Append("counter", "2");
                     ViewBag.counter = ++counter;
+                    Response.Cookies.Append("counter", (counter + 1).ToString());
                 }
                 else
                 {
@@ -53,6 +52,8 @@ namespace BonjourMVC.Controllers
 
                 if (Request.Cookies["counter"] != null)
                 {
+                    // Lambda expression you will learn later
+                    // could've just done ViewBag.counter = Request.Cookies["counter"]
                     ViewBag.counter = Request.Cookies.Single(cookie => cookie.Key.Equals("counter")).Value;
                 }
                 formattedString = string.Format(Languages[lang], name);
